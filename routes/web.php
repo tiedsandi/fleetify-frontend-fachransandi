@@ -11,3 +11,7 @@ Route::get('/departments', function () { {
         return view('departments');
     }
 });
+Route::get('/employees', function () { {
+        return view('employee');
+    }
+});
