@@ -19,34 +19,36 @@ Sebuah perusahaan Multinasional memiliki jumlah karyawan diatas 50 karyawan, dan
 
 ### 🚀 Cara Instalasi
 
-1. **Clone repositori ini**
+1.  **Clone repositori ini**
 
     ```bash
     git clone https://github.com/tiedsandi/fleetify-frontend-fachransandi
     cd fleetify-frontend-fachransandi
     ```
 
-2. **Install dependency Laravel**
+2.  **Install dependency Laravel**
 
     ```bash
     composer install
     ```
 
-3. **Salin file .env dan generate key**
+3.  **Salin file .env dan generate key**
 
-    ```bash
-    cp .env.example .env
-    php artisan key:generate
-    ```
+        ```bash
+        cp .env.example .env
+        php artisan key:generate
+        ```
 
-4. **Jalankan server Laravel**
+    > pastikan `SESSION_DRIVER=file` pada .env
+
+4.  **Jalankan server Laravel**
 
     ```bash
     php artisan serve
     ```
 
-5. **Pastikan REST API eksternal berjalan di** `http://localhost:8080`
-   (Aplikasi ini mengambil data dari backend di port tersebut)
+5.  **Pastikan REST API eksternal berjalan di** `http://localhost:8080`
+    (Aplikasi ini mengambil data dari backend di port tersebut)
 
 ---
 
