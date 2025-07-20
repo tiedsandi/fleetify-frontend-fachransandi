@@ -1,12 +1,12 @@
 @extends('layouts.root-layout')
-@section('page-name', 'Department')
+@section('page-name', 'Departemen')
 
 @section('content')
 <div class="row mt-4">
     <div class="col-md-8">
         <div class="card pt-4">
             <div class="card-body">
-                <h4>Daftar Department</h4>
+                <h4>Daftar Departemen</h4>
                 <button class="btn btn-secondary mb-3" id="reload">Reload Data</button>
                 <table class="table table-bordered table-striped" id="tabelorder">
                     <thead>
@@ -29,11 +29,11 @@
     <div class="col-md-4">
         <div class="card pt-4">
             <div class="card-body">
-                <h4 id="form-title">Tambah Department</h4>
+                <h4 id="form-title">Tambah Departemen</h4>
                 <form id="create-form">
                     <input type="hidden" id="department_id">
                     <div class="mb-3">
-                        <label for="department_name" class="form-label">Nama Department</label>
+                        <label for="department_name" class="form-label">Nama Departmen</label>
                         <input type="text" class="form-control" id="department_name" required>
                     </div>
                     <div class="mb-3">
@@ -54,11 +54,11 @@
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    var url = "http://localhost:8080/departments"
     function loadDepartments() {
         $.ajax({
-            url: 'http://localhost:8080/departments',
+            url: url,
             type: 'GET',
             success: function (data) {
                 let html = '';
@@ -109,8 +109,8 @@
             };
 
             const url = id
-                ? `http://localhost:8080/departments/${id}`
-                : 'http://localhost:8080/departments';
+                ? `${url}/${id}`
+                : url;
 
             const method = id ? 'PUT' : 'POST';
 
@@ -144,7 +144,7 @@
         $(document).on('click', '.edit-btn', function () {
             const id = $(this).data('id');
             $.ajax({
-                url: `http://localhost:8080/departments/${id}`,
+                url: `${url}/${id}`,
                 type: 'GET',
                 success: function (dept) {
                     $('#department_id').val(dept.ID);
@@ -171,7 +171,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `http://localhost:8080/departments/${id}`,
+                        url: `${url}/${id}`,
                         type: 'DELETE',
                         success: function () {
                             Swal.fire({
