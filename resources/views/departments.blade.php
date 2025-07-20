@@ -55,10 +55,10 @@
 
 @section('script')
 <script>
-    var url = "http://localhost:8080/departments"
+    let root_url = "http://localhost:8080/departments"
     function loadDepartments() {
         $.ajax({
-            url: url,
+            url: root_url,
             type: 'GET',
             success: function (data) {
                 let html = '';
@@ -108,8 +108,11 @@
                 max_clock_out_time: $('#max_clock_out_time').val()
             };
 
+            // console.log(data);
+
+
             const url = id
-                ? `${url}/${id}`
+                ? `${root_url}/${id}`
                 : url;
 
             const method = id ? 'PUT' : 'POST';
@@ -131,10 +134,11 @@
                     loadDepartments();
                 },
                 error: function (xhr) {
+                    // console.log(xhr);
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal!',
-                        text: xhr.responseText || 'Terjadi kesalahan.'
+                        text: xhr.responseJSON.error || 'Terjadi kesalahan.'
                     });
                 }
             });
@@ -144,7 +148,7 @@
         $(document).on('click', '.edit-btn', function () {
             const id = $(this).data('id');
             $.ajax({
-                url: `${url}/${id}`,
+                url: `${root_url}/${id}`,
                 type: 'GET',
                 success: function (dept) {
                     $('#department_id').val(dept.ID);
@@ -171,7 +175,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `${url}/${id}`,
+                        url: `${root_url}/${id}`,
                         type: 'DELETE',
                         success: function () {
                             Swal.fire({
@@ -184,10 +188,12 @@
                             loadDepartments();
                         },
                         error: function (xhr) {
+                            console.log(xhr);
+
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Gagal!',
-                                text: xhr.responseText || 'Gagal menghapus department.'
+                                text: xhr.responseJSON.error || 'Gagal menghapus department.'
                             });
                         }
                     });

@@ -15,3 +15,7 @@ Route::get('/employees', function () { {
         return view('employee');
     }
 });
+Route::get('/absensi-log', function () { {
+        return view('absensi-log');
+    }
+});

@@ -165,7 +165,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal!',
-                        text: xhr.responseText || 'Terjadi kesalahan.'
+                        text: xhr.responseJSON.error || 'Terjadi kesalahan.'
                     });
                 }
             });
@@ -218,7 +218,7 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Gagal!',
-                                text: xhr.responseText || 'Gagal menghapus karyawan.'
+                                text: xhr.responseJSON.error || 'Gagal menghapus karyawan.'
                             });
                         }
                     });
